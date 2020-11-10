@@ -37,6 +37,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the user meta data for the user.
+     */
+    public function userMeta()
+    {
+        return $this->hasMany('App\UserMeta');
+    }
+
+    /**
+     * Get roles for the user
+     */
     public function roles() {
         return $this->belongsToMany('\App\Role');
     }
