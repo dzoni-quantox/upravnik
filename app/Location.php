@@ -22,4 +22,20 @@ class Location extends Model
     {
         return $this->hasMany('App\LocationMeta');
     }
+
+    /**
+     * Get apartments for this location.
+     */
+    public function apartments()
+    {
+        return $this->hasMany('App\Apartment');
+    }
+
+    /**
+     * Get notifications for this location.
+     */
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
 }
