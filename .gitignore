@@ -6,7 +6,10 @@
 .env
 .env.backup
 .phpunit.result.cache
+composer.*
+package-lock.json
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/.idea
