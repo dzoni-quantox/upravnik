@@ -2,7 +2,18 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import '_variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+
+@import "_bootstrap.min.css";
+// @import "_icofont.min.css";
+// @import "_boxicons.min.css";
+@import "_venobox.css";
+@import "_animate.min.css";
+// @import "_remixicon.cs";
+// @import "_owl.carousel.min.css";
+@import "_bootstrap-datepicker.min.css";
+// Custom css
+@import "_style"; 
