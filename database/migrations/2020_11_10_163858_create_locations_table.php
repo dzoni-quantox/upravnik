@@ -18,6 +18,7 @@ class CreateLocationsTable extends Migration
             $table->string('city');
             $table->string('street');
             $table->string('street_number');
+            $table->string('number_of_apartments');
             $table->string('tax_number')->unique();
             $table->string('id_number')->unique();
             $table->timestamps();

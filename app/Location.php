@@ -10,6 +10,7 @@ class Location extends Model
         'city',
         'street',
         'street_number',
+        'number_of_apartments',
         'tax_number',
         'id_number',
     ];
