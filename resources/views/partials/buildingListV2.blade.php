@@ -8,113 +8,25 @@
 
     <div class="row">
 
-      <div class="col-lg-6">
-        <div class="member d-flex align-items-start">
-          <div class="pic"><img src="{{asset('storage/img/image.jpg')}}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Beograd</h4>
-            <span>Generala Mihajla Nedeljkovića</span>
-            <p>PIB: 125324853</p>
-            <p>MB: 21312131</p>
-            <!-- <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4 mt-lg-0">
-        <div class="member d-flex align-items-start">
-          <div class="pic"><img src="{{asset('storage/img/image.jpg')}}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Beograd</h4>
-            <span>Generala Mihajla Nedeljkovića</span>
-            <p>PIB: 125324853</p>
-            <p>MB: 21312131</p>
-            <!-- <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4">
-        <div class="member d-flex align-items-start">
-          <div class="pic"><img src="{{asset('storage/img/image.jpg')}}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Beograd</h4>
-            <span>Generala Mihajla Nedeljkovića</span>
-            <p>PIB: 125324853</p>
-            <p>MB: 21312131</p>
-            <!-- <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4">
-        <div class="member d-flex align-items-start">
-          <div class="pic"><img src="{{asset('storage/img/image.jpg')}}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Beograd</h4>
-            <span>Generala Mihajla Nedeljkovića</span>
-            <p>PIB: 125324853</p>
-            <p>MB: 21312131</p>
-            <!-- <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4">
-        <div class="member d-flex align-items-start">
-          <div class="pic"><img src="{{asset('storage/img/image.jpg')}}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Beograd</h4>
-            <span>Generala Mihajla Nedeljkovića</span>
-            <p>PIB: 125324853</p>
-            <p>MB: 21312131</p>
-            <!-- <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4">
-        <div class="member d-flex align-items-start">
-          <div class="pic"><img src="{{asset('storage/img/image.jpg')}}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <h4>Beograd</h4>
-            <span>Generala Mihajla Nedeljkovića</span>
-            <p>PIB: 125324853</p>
-            <p>MB: 21312131</p>
-            <!-- <div class="social">
-              <a href=""><i class="ri-twitter-fill"></i></a>
-              <a href=""><i class="ri-facebook-fill"></i></a>
-              <a href=""><i class="ri-instagram-fill"></i></a>
-              <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-            </div> -->
-          </div>
-        </div>
-      </div>
+        @foreach($locations as $location)
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="member d-flex align-items-start">
+                    <div class="pic"><img src="{{asset('storage/img/image.jpg')}}" class="img-fluid" alt=""></div>
+                    <div class="member-info">
+                        <h4>{!! $location->city !!}</h4>
+                        <span>{!! $location->address !!}</span>
+                        <p>PIB: {!! $location->tax_number !!}</p>
+                        <p>MB: {!! $location->id_number !!}</p>
+                        <!-- <div class="social">
+                          <a href=""><i class="ri-twitter-fill"></i></a>
+                          <a href=""><i class="ri-facebook-fill"></i></a>
+                          <a href=""><i class="ri-instagram-fill"></i></a>
+                          <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        @endforeach
 
     </div>
 
