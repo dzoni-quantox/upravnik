@@ -4,11 +4,11 @@
 
     <div class="text-center footer-copyright-holder">
       <div class="copyright">
-        &copy; Copyright <strong><span>Medilab</span></strong>. All Rights Reserved
+        Copyright 2020 &copy; <strong><span>Quantox.com</span></strong>
       </div>
-      <div class="credits">
+      {{-- <div class="credits">
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+      </div> --}}
     </div>
   </div>
 </footer>

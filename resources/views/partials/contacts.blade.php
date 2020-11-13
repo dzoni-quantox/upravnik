@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-lg-2">
               <div class="pic">
-                <img src="assets/img/contacts/img.jpg" class="img-fluid" alt="">   
+                <img src="{{asset('storage/img/contacts/img.jpg')}}" class="img-fluid" alt="">   
               </div>
             </div>
             <div class="col-lg-6">
@@ -33,7 +33,7 @@
           <div class="row">
             <div class="col-lg-2">
               <div class="pic">
-                <img src="assets/img/contacts/img.jpg" class="img-fluid" alt="">   
+                <img src="{{asset('storage/img/contacts/img.jpg')}}" class="img-fluid" alt="">   
               </div>
             </div>
             <div class="col-lg-6">
@@ -53,7 +53,7 @@
           <div class="row">
             <div class="col-lg-2">
               <div class="pic">
-                <img src="assets/img/contacts/img.jpg" class="img-fluid" alt="">   
+                <img src="{{asset('storage/img/contacts/img.jpg')}}" class="img-fluid" alt="">   
               </div>
             </div>
             <div class="col-lg-6">
@@ -73,7 +73,7 @@
           <div class="row">
             <div class="col-lg-2">
               <div class="pic">
-                <img src="assets/img/contacts/img.jpg" class="img-fluid" alt="">   
+                <img src="{{asset('storage/img/contacts/img.jpg')}}" class="img-fluid" alt="">   
               </div>
             </div>
             <div class="col-lg-6">
@@ -93,7 +93,7 @@
           <div class="row">
             <div class="col-lg-2">
               <div class="pic">
-                <img src="assets/img/contacts/img.jpg" class="img-fluid" alt="">   
+                <img src="{{asset('storage/img/contacts/img.jpg')}}" class="img-fluid" alt="">   
               </div>
             </div>
             <div class="col-lg-6">
@@ -113,7 +113,7 @@
           <div class="row">
             <div class="col-lg-2">
               <div class="pic">
-                <img src="/storage/img/contacts/img.jpg" class="img-fluid" alt="">   
+              <img src="{{asset('storage/img/contacts/img.jpg')}}" class="img-fluid" alt="">   
               </div>   
             </div>
             <div class="col-lg-6">
