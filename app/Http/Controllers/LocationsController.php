@@ -44,7 +44,7 @@ class LocationsController extends Controller
 
         if(isset($request['meta'])) {
             foreach ($request['meta'] as $key => $value) {
-                $locationMeta = LocationMeta::create($location->id, $key, $value);
+                $locationMeta = LocationMeta::create($location->id, $value);
             }
         }
 
