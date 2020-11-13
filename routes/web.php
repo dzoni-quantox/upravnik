@@ -13,13 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('index');
+});*/
+
+Route::get('/portal', function () {
+  return view('portal.home');
+});
+
+Route::get('/user', function () {
+  return view('portal.userPage');
+});
+
+Route::get('/admin', function () {
+  return view('portal.admin');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
 Route::resource('/locations', 'LocationsController');
