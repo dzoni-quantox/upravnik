@@ -17,7 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->string('subject');
             $table->text('text');
-            $table->foreignId('location_id')->unsigned();
+            $table->foreignId('location_id')->unsigned()->onDelete('cascade');
             $table->timestamps();
         });
     }
