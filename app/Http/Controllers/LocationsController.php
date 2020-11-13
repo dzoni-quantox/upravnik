@@ -38,8 +38,8 @@ class LocationsController extends Controller
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'street' => 'required|string',
-            'street_number' => 'required|string',
+            'address' => 'required|string',
+            'number_of_apartments' => 'required|numeric',
             'tax_number' => 'required|numeric',
             'id_number' => 'required|numeric'
         ]);
@@ -89,8 +89,8 @@ class LocationsController extends Controller
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'street' => 'required|string',
-            'street_number' => 'required|string',
+            'address' => 'required|string',
+            'number_of_apartments' => 'required|numeric',
             'tax_number' => 'required|numeric',
             'id_number' => 'required|numeric'
         ]);
