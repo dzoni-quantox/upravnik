@@ -13,15 +13,11 @@ class LocationsController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
-
-        return view('locations.index')->with('locations', $locations);
+        return Location::all();
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -38,8 +34,8 @@ class LocationsController extends Controller
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'street' => 'required|string',
-            'street_number' => 'required|string',
+            'address' => 'required|string',
+            'number_of_apartments' => 'required|numeric',
             'tax_number' => 'required|numeric',
             'id_number' => 'required|numeric'
         ]);
@@ -71,11 +67,10 @@ class LocationsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
      */
     public function edit(Location $location)
     {
-        return view('locations.edit')->with('location', $location);
+        return view('locations.edit', $location);
     }
 
     /**
@@ -83,33 +78,31 @@ class LocationsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Location $location)
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'street' => 'required|string',
-            'street_number' => 'required|string',
+            'address' => 'required|string',
+            'number_of_apartments' => 'required|numeric',
             'tax_number' => 'required|numeric',
             'id_number' => 'required|numeric'
         ]);
 
         $location = Location::create($data);
 
-        return route('location.show')->with('location', $location);
+        return route('location.show', $location);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Location $location)
     {
         $location->delete();
 
-        return redirect('location');
+        return back();
     }
 }
