@@ -49,7 +49,7 @@ class NotificationsController extends Controller
      */
     public function show(Notification $notification)
     {
-        return view('notifications.show')->with('notification', $notification);
+        return view('notifications.show', $notification);
     }
 
     /**
