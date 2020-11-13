@@ -42,9 +42,12 @@ class LocationsController extends Controller
 
         $location = Location::create($data);
 
-        if(isset($request['meta'])) {
-            foreach ($request['meta'] as $key => $value) {
-                $locationMeta = LocationMeta::create($location->id, $value);
+        if(isset($data['meta'])) {
+            foreach ($data['meta'] as $key => $value) {
+                LocationMeta::create([
+                    'location_id' => $location->id,
+                    'field_name' => $value
+                ]);
             }
         }
 
@@ -82,14 +85,24 @@ class LocationsController extends Controller
     public function update(Request $request, Location $location)
     {
         $data = $request->validate([
-            'city' => 'required|string',
-            'address' => 'required|string',
-            'number_of_apartments' => 'required|numeric',
-            'tax_number' => 'required|numeric',
-            'id_number' => 'required|numeric'
+            'city' => 'string',
+            'address' => 'string',
+            'number_of_apartments' => 'numeric',
+            'tax_number' => 'numeric',
+            'id_number' => 'numeric'
         ]);
 
-        $location = Location::create($data);
+        $location->update($data);
+
+        if(isset($data['meta'])) {
+            $location->locationMeta()->delete();
+            foreach ($data['meta'] as $key => $value) {
+                LocationMeta::create([
+                    'location_id' => $location->id,
+                    'field_name' => $value
+                ]);
+            }
+        }
 
         return route('location.show', $location);
     }

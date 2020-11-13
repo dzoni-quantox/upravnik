@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserMeta extends Model
 {
+    public $table = 'user_meta';
+
     /**
      * Get the user that owns the meta data.
      */
