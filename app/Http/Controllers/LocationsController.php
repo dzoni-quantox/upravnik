@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Apartment;
 use App\Location;
 use App\LocationMeta;
 use Illuminate\Http\Request;
@@ -43,13 +44,9 @@ class LocationsController extends Controller
         $location = Location::create($data);
 
         if(isset($data['meta'])) {
-            foreach ($data['meta'] as $key => $value) {
-                LocationMeta::create([
-                    'location_id' => $location->id,
-                    'field_name' => $value
-                ]);
-            }
+            $this->createLocationMeta($data, $location);
         }
+        $this->createApartments($location);
 
         return 'OK';
     }
@@ -117,5 +114,25 @@ class LocationsController extends Controller
         $location->delete();
 
         return back();
+    }
+
+    private function createLocationMeta($data, $location) {
+        foreach ($data['meta'] as $key => $value) {
+            LocationMeta::create([
+                'location_id' => $location->id,
+                'field_name' => $value
+            ]);
+        }
+    }
+
+    private function createApartments($location) {
+        $i = 1;
+        while ($i < $location->number_of_apartments) {
+            Apartment::create([
+                'apartment_number' => $i,
+                'location_id' => $location->id
+            ]);
+            $i++;
+        }
     }
 }
