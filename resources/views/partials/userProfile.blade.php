@@ -67,7 +67,7 @@
           </div>
           <div class="panel-footer">
             <span class="user-button-holder">
-                <a type="button" class="btn btn-sm btn-primary">Zgrada <i class="bx bx-plus-circle"></i></a>
+                <a type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-building">Zgrada <i class="bx bx-plus-circle"></i></a>
                 <a type="button" class="btn btn-sm btn-primary">Stanar <i class="bx bx-plus-circle"></i></a>
                 <a type="button" class="btn btn-sm btn-primary">Obaveštenje <i class="bx bx-plus-circle"></i></a>
                 <a type="button" class="btn btn-sm btn-primary">Izmeni podatke <i class="bx bx-edit"></i></a>
@@ -78,3 +78,5 @@
     </div>
   </div>
 </section>
+
+@include('modals.addBuilding')
