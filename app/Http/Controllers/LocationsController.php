@@ -28,17 +28,18 @@ class LocationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'address' => 'required|string',
+            'address' => 'required|string|unique:locations',
             'number_of_apartments' => 'required|numeric',
-            'tax_number' => 'required|numeric|unique',
-            'id_number' => 'required|numeric|unique'
+            'tax_number' => 'required|numeric|unique:locations',
+            'id_number' => 'required|numeric|unique:locations',
+            'meta' => 'sometimes|array'
         ]);
 
         $location = Location::create($data);
@@ -48,7 +49,7 @@ class LocationsController extends Controller
         }
         $this->createApartments($location);
 
-        return 'OK';
+        return back();
     }
 
     /**
@@ -127,7 +128,7 @@ class LocationsController extends Controller
 
     private function createApartments($location) {
         $i = 1;
-        while ($i < $location->number_of_apartments) {
+        while ($i <= $location->number_of_apartments) {
             Apartment::create([
                 'apartment_number' => $i,
                 'location_id' => $location->id
