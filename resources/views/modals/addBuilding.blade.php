@@ -7,19 +7,20 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('locations.store') }}">
-        @method("POST")
+      <form action="{{ route('locations.store') }}" method="POST">
+        @csrf
         <div class="modal-body">
           <input type="text" name="city" placeholder="Grad">
           <input type="text" name="address" placeholder="Adresa">
           <input type="number" name="number_of_apartments" placeholder="Broj stanova">
-          <input type="text" name="tax_number" placeholder="PIB">
-          <input type="text" name="id_number" placeholder="Matični broj">
+          <input type="text" name="tax_number" placeholder="PIB" required>
+          <input type="text" name="id_number" placeholder="Matični broj" required>
           <div class="form-group multiple-form-group">
             <div class="form-group input-group">
               <input type="text" name="meta[]" class="form-control" placeholder="Polje po želji">
-                <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
-                </button></span>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-add">+</button>
+                </span>
             </div>
           </div>
         </div>
