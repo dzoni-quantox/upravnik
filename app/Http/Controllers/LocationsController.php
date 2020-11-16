@@ -14,7 +14,7 @@ class LocationsController extends Controller
      */
     public function index()
     {
-        return Location::all();
+        return Location::paginate(5);
     }
 
     /**
@@ -37,8 +37,8 @@ class LocationsController extends Controller
             'city' => 'required|string',
             'address' => 'required|string',
             'number_of_apartments' => 'required|numeric',
-            'tax_number' => 'required|numeric',
-            'id_number' => 'required|numeric'
+            'tax_number' => 'required|numeric|unique',
+            'id_number' => 'required|numeric|unique'
         ]);
 
         $location = Location::create($data);
