@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Apartment;
 use App\Location;
 use App\LocationMeta;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class LocationsController extends Controller
      */
     public function index()
     {
-        return Location::all();
+        return Location::paginate(5);
     }
 
     /**
@@ -27,31 +28,28 @@ class LocationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'address' => 'required|string',
+            'address' => 'required|string|unique:locations',
             'number_of_apartments' => 'required|numeric',
-            'tax_number' => 'required|numeric',
-            'id_number' => 'required|numeric'
+            'tax_number' => 'required|numeric|unique:locations',
+            'id_number' => 'required|numeric|unique:locations',
+            'meta' => 'sometimes|array'
         ]);
 
         $location = Location::create($data);
 
         if(isset($data['meta'])) {
-            foreach ($data['meta'] as $key => $value) {
-                LocationMeta::create([
-                    'location_id' => $location->id,
-                    'field_name' => $value
-                ]);
-            }
+            $this->createLocationMeta($data, $location);
         }
+        $this->createApartments($location);
 
-        return 'OK';
+        return back();
     }
 
     /**
@@ -117,5 +115,25 @@ class LocationsController extends Controller
         $location->delete();
 
         return back();
+    }
+
+    private function createLocationMeta($data, $location) {
+        foreach ($data['meta'] as $key => $value) {
+            LocationMeta::create([
+                'location_id' => $location->id,
+                'field_name' => $value
+            ]);
+        }
+    }
+
+    private function createApartments($location) {
+        $i = 1;
+        while ($i <= $location->number_of_apartments) {
+            Apartment::create([
+                'apartment_number' => $i,
+                'location_id' => $location->id
+            ]);
+            $i++;
+        }
     }
 }
