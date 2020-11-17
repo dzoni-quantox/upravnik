@@ -35,3 +35,5 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
 Route::resource('/locations', 'LocationsController');
+
+Route::post('/ajax-validation', 'LocationsController@ajaxValidation')->name('ajax-validation');

@@ -2553,7 +2553,7 @@ input[type=number] {
   height: 35px;
   font-size: 14px;
   width: 100%;
-  margin-bottom: 10px;
+  margin-top: 10px;
   -webkit-appearance: none;
   background: #fff;
   border: 1px solid #d9d9d9;
@@ -2570,9 +2570,35 @@ input[type=number]:hover {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+#add-building input.error {
+  border: 1px solid red;
+}
+
+#add-building input.error:hover,
+#add-building input.error:active,
+#add-building input.error:focus {
+  outline: 2px solid red;
+  border: 1px solid #ff0000;
+  border-top: 1px solid #ff0000;
+  box-shadow: inset 0 1px 2px #ff00001a;
+}
+
+#add-building .error-message {
+  color: red;
+  font-size: small;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+#add-building .error-message.show-error {
+  display: block;
+}
+
 #add-building .input-group-btn {
   position: absolute;
   right: 0;
+  top: 10px;
 }
 
 #add-building .input-group-btn button {
@@ -2595,23 +2621,27 @@ input[type=number]:hover {
     user-select: none; */
 }
 
-#add-building .loginmodal-submit {
+#add-building .submit-form {
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
   text-shadow: 0 1px rgba(0, 0, 0, 0.1);
   background-color: #4d90fe;
-  padding: 17px 0px;
+  padding: 10px;
   font-size: 14px;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
-#add-building .loginmodal-submit:hover {
+#add-building .submit-form:hover {
   /* border: 1px solid #2f5bb7; */
   border: 0px;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   background-color: #357ae8;
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+#add-building .submit-form.disabled {
+  pointer-events: none;
 }
 
 #add-building .loginmodal-container a {
