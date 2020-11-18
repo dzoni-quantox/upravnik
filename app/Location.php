@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     public $fillable = [
         'city',
-        'street',
-        'street_number',
+        'address',
         'number_of_apartments',
         'tax_number',
         'id_number',

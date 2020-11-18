@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/user', function () {
   return view('portal.userPage');
 });
@@ -29,3 +28,4 @@ Route::get('/portal', 'PortalController@index')->name('portal.home');
 
 Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
 Route::resource('/locations', 'LocationsController');
+Route::post('locations/validate-form', 'LocationsController@validateInputForm')->name('locations.validate-form');
