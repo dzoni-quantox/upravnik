@@ -78,3 +78,70 @@ const app = new Vue({
 
   });
 })(jQuery);
+
+var ajaxUrl = $("#url").val();
+
+$(document).on('keyup', '.uniqe-field', function(){
+    $this = $(this)[0];
+    $field = $this["name"];    
+    $inputs = $this.closest('form').getElementsByTagName('input');
+    $arrInputs = Array.prototype.slice.call( $inputs )
+    $subnitBtn = $this.closest('form').getElementsByClassName('submit-form')[0];
+    $errorMsgHolder = $this.closest('form').getElementsByClassName($field+'-err-msg')[0];    
+    $.ajax({
+      url: ajaxUrl,
+      method:'POST',
+      data: {
+        [$field]: $(this).val(),
+        field: $field
+      },
+      dataType:'json',
+      success:function(data) {
+        $this.classList.remove("error"); 
+        $errorMsgHolder.innerHTML = "";
+        $errorMsgHolder.classList.remove('show-error')
+
+        $someArray = [];      
+        $arrInputs.forEach(function($data){
+          $someArray.push($data.classList.contains('error'))
+        }) 
+        $check = $someArray.includes(true)
+        if($check != true){
+          $subnitBtn.classList.remove("disabled")
+        }
+      },
+      error:function(data) {
+        $errorMsg = data.responseJSON.errors[$field][0];
+
+        if (data.status != 200){      
+          $errorMsgHolder.innerHTML = $errorMsg;
+          $errorMsgHolder.classList.add('show-error')
+
+          $this.classList.add("error");
+          $subnitBtn.classList.add("disabled")
+        } 
+        else {
+          $this.classList.remove("error"); 
+          $errorMsgHolder.innerHTML = "";
+          $errorMsgHolder.classList.remove('show-error')
+
+          $someArray = [];      
+          $arrInputs.forEach(function($data){
+            $someArray.push($data.classList.contains('error'))
+          }) 
+          $check = $someArray.includes(true)
+          if($check != true){
+            $subnitBtn.classList.remove("disabled")
+          }
+        }
+        
+      }
+
+    })
+});
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
