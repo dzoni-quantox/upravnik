@@ -45,7 +45,7 @@ class LocationsController extends Controller
         $location = Location::create($data);
 
         if(isset($data['meta'])) {
-            $this->createLocationMeta($data, $location);
+            $this->createLocationMeta($data['meta'], $location);
         }
         $this->createApartments($location);
 
@@ -77,29 +77,27 @@ class LocationsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Location $location
+     * @return string
      */
     public function update(Request $request, Location $location)
     {
         $data = $request->validate([
             'city' => 'string',
-            'address' => 'string',
+            'address' => 'string|unique:locations',
             'number_of_apartments' => 'numeric',
-            'tax_number' => 'numeric',
-            'id_number' => 'numeric'
+            'tax_number' => 'numeric|unique:locations',
+            'id_number' => 'numeric|unique:locations'
         ]);
 
         $location->update($data);
 
-        if(isset($data['meta'])) {
+        // da se doda brisanje ili dodavanje stanova ako je admin promenio number_of_apartments
+
+        if(isset($request['meta'])) {
             $location->locationMeta()->delete();
-            foreach ($data['meta'] as $key => $value) {
-                LocationMeta::create([
-                    'location_id' => $location->id,
-                    'field_name' => $value
-                ]);
-            }
+            $this->createLocationMeta($request['meta'], $location);
         }
 
         return route('location.show', $location);
@@ -118,12 +116,25 @@ class LocationsController extends Controller
     }
 
     private function createLocationMeta($data, $location) {
-        foreach ($data['meta'] as $key => $value) {
+        foreach ($data as $key => $value) {
             LocationMeta::create([
                 'location_id' => $location->id,
                 'field_name' => $value
             ]);
         }
+    }
+
+    public function validateInputForm(Request $request) {
+
+        $customMessages = [
+            'address' => 'Zgrada na ovoj adresi vec postoji.',
+            'tax_number.unique'  => 'Zgrada sa ovim PIB-om vec postoji.',
+            'id_number.unique'  => 'Zgrada sa ovim maticnim brojem vec postoji.',
+        ];
+
+        return $request->validate([
+            $request["field"] => 'unique:locations',
+        ], $customMessages);
     }
 
     private function createApartments($location) {
