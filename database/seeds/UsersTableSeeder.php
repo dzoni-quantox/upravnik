@@ -15,23 +15,19 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::truncate();
-        DB::table('role_user')->truncate();
 
-        $adminRole = Role::where('name', 'admin')->first();
-        $residentRole = Role::where('name', 'resident')->first();
-
-        $admin = User::create([
+        User::create([
             'name' => 'Upravnik',
             'email' => 'admin@upravnik.com',
-            'password' => Hash::make('dzoni123')
+            'password' => Hash::make('dzoni123'),
+            'role_id' => 1
         ]);
-        $admin->roles()->attach($adminRole);
 
-        $resident = User::create([
-            'name' => 'Steva',
-            'email' => 'steva@qtx.com',
-            'password' => Hash::make('dzoni123')
+        User::create([
+            'name' => 'Dzoni',
+            'email' => 'dzoni@qtx.com',
+            'password' => Hash::make('dzoni123'),
+            'role_id' => 2
         ]);
-        $resident->roles()->attach($residentRole);
     }
 }

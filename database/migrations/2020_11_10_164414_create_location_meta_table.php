@@ -15,7 +15,7 @@ class CreateLocationMetaTable extends Migration
     {
         Schema::create('location_meta', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->onDelete('cascade');
+            $table->foreignId('location_id')->unsigned()->onDelete('cascade');
             $table->string('field_name');
             $table->timestamps();
         });
