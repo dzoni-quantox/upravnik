@@ -18,6 +18,17 @@ class LocationsController extends Controller
     }
 
     /**
+     * Display a filtered list of the resource.
+     * @param Request $request
+     */
+    public function search(Request $request)
+    {
+        return Location::where('city', 'like', '%'.$request->query('city').'%')
+            ->where('address', 'like', '%'.$request->query('address').'%')
+            ->paginate(5);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
