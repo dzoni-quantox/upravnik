@@ -13,18 +13,26 @@ class Apartment extends Model
      */
     public $fillable = [
         'apartment_number',
-        'owner',
+        'owner_name',
         'owner_phone',
         'owner_email',
         'location_id',
     ];
 
     /**
-     * Get the users for apartment.
+     * Get the meta data for apartment.
      */
-    public function users()
+    public function apartmentMeta()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\ApartmentMeta');
+    }
+
+    /**
+     * Get the user for apartment.
+     */
+    public function user()
+    {
+        return $this->hasOne('App\User');
     }
 
     /**

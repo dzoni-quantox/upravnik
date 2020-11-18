@@ -15,9 +15,9 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('location_id')->unsigned()->onDelete('cascade');
             $table->string('subject');
             $table->text('text');
-            $table->foreignId('location_id')->unsigned()->onDelete('cascade');
             $table->timestamps();
         });
     }
