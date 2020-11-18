@@ -13,14 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/portal', function () {
-  return view('portal.home');
-});
-
 Route::get('/user', function () {
   return view('portal.userPage');
 });
@@ -32,6 +24,7 @@ Route::get('/admin', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/portal', 'PortalController@index')->name('portal.home');
 
 Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
 Route::resource('/locations', 'LocationsController');
