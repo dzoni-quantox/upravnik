@@ -33,3 +33,5 @@ Route::post('locations/validate-form', 'LocationsController@validateInputForm')-
 
 Route::resource('/notifications', 'NotificationsController');
 Route::get('/notifications/location/{location}', 'NotificationsController@getForLocation');
+
+Route::resource('/apartments', 'ApartmentsController');
