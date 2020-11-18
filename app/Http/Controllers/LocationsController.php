@@ -104,7 +104,9 @@ class LocationsController extends Controller
 
         $location->update($data);
 
-        // da se doda brisanje ili dodavanje stanova ako je admin promenio number_of_apartments
+        // da se doda brisanje ili dodavanje stanova
+        // preko modala ili nekako
+        // ako je admin promenio number_of_apartments
 
         if(isset($request['meta'])) {
             $location->locationMeta()->delete();
@@ -126,17 +128,14 @@ class LocationsController extends Controller
         return back();
     }
 
-    private function createLocationMeta($data, $location) {
-        foreach ($data as $key => $value) {
-            LocationMeta::create([
-                'location_id' => $location->id,
-                'field_name' => $value
-            ]);
-        }
-    }
-
-    public function validateInputForm(Request $request) {
-
+    /**
+     * Validating the location create input form
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function validateInputForm(Request $request)
+    {
         $customMessages = [
             'address.unique' => 'Zgrada na ovoj adresi vec postoji.',
             'tax_number.unique'  => 'Zgrada sa ovim PIB-om vec postoji.',
@@ -148,7 +147,18 @@ class LocationsController extends Controller
         ], $customMessages);
     }
 
-    private function createApartments($location) {
+    private function createLocationMeta($data, $location)
+    {
+        foreach ($data as $key => $value) {
+            LocationMeta::create([
+                'location_id' => $location->id,
+                'field_name' => $value
+            ]);
+        }
+    }
+
+    private function createApartments($location)
+    {
         $i = 1;
         while ($i <= $location->number_of_apartments) {
             Apartment::create([
