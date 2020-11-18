@@ -27,5 +27,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/portal', 'PortalController@index')->name('portal.home');
 
 Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
+
 Route::resource('/locations', 'LocationsController');
 Route::post('locations/validate-form', 'LocationsController@validateInputForm')->name('locations.validate-form');
+
+Route::resource('/notifications', 'NotificationsController');
+Route::get('/notifications/location/{location}', 'NotificationsController@getForLocation');
