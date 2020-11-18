@@ -127,7 +127,7 @@ class LocationsController extends Controller
     public function validateInputForm(Request $request) {
 
         $customMessages = [
-            'address' => 'Zgrada na ovoj adresi vec postoji.',
+            'address.unique' => 'Zgrada na ovoj adresi vec postoji.',
             'tax_number.unique'  => 'Zgrada sa ovim PIB-om vec postoji.',
             'id_number.unique'  => 'Zgrada sa ovim maticnim brojem vec postoji.',
         ];

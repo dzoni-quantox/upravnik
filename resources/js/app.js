@@ -112,16 +112,9 @@ $(document).on('keyup', '.uniqe-field', function(){
       },
       error:function(data) {
         $errorMsg = data.responseJSON.errors[$field][0];
-        $mapObj = {
-          "tax number":"PIB",
-          "id number":"maticni broj"
-        };
-        $res = $errorMsg.replace(/tax number|id number/gi, function(matched){
-          return $mapObj[matched];
-        });
 
         if (data.status != 200){      
-          $errorMsgHolder.innerHTML = $res;
+          $errorMsgHolder.innerHTML = $errorMsg;
           $errorMsgHolder.classList.add('show-error')
 
           $this.classList.add("error");

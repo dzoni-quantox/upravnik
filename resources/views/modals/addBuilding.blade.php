@@ -10,9 +10,10 @@
       <form id="location-register-form" action="{{ route('locations.store') }}" method="POST">
         @csrf
         <div class="modal-body">
-          <input type="hidden" value="{{route('ajax-validation')}}" id="url" name="url">
+          <input type="hidden" value="{{route('locations.validate-form')}}" id="url" name="url">
           <input type="text" name="city" placeholder="Grad" required>
-          <input type="text" name="address" placeholder="Adresa" required>
+          <input class="uniqe-field" type="text" id="address" name="address" placeholder="Adresa" required>
+          <label for="address" class="error-message address-err-msg"></label>
           <input type="number" name="number_of_apartments" placeholder="Broj stanova" required>
           <input class="uniqe-field" id="tax_number" type="text" name="tax_number" placeholder="PIB" required>
           <label for="tax_number" class="error-message tax_number-err-msg"></label>
