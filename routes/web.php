@@ -35,3 +35,4 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
 Route::resource('/locations', 'LocationsController');
+Route::post('locations/validate-form', 'LocationsController@validateInputForm')->name('locations.validate-form');

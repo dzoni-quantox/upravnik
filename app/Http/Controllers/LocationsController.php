@@ -124,6 +124,19 @@ class LocationsController extends Controller
         }
     }
 
+    public function validateInputForm(Request $request) {
+
+        $customMessages = [
+            'address' => 'Zgrada na ovoj adresi vec postoji.',
+            'tax_number.unique'  => 'Zgrada sa ovim PIB-om vec postoji.',
+            'id_number.unique'  => 'Zgrada sa ovim maticnim brojem vec postoji.',
+        ];
+
+        return $request->validate([
+            $request["field"] => 'unique:locations',
+        ], $customMessages);
+    }
+
     private function createApartments($location) {
         $i = 1;
         while ($i <= $location->number_of_apartments) {
