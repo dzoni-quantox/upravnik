@@ -49723,6 +49723,8 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49790,6 +49792,66 @@ var app = new Vue({
     $(document).on('click', '.btn-remove', removeFormGroup);
   });
 })(jQuery);
+
+var ajaxUrl = $("#url").val();
+$(document).on('keyup', '.uniqe-field', function () {
+  var _data;
+
+  $this = $(this)[0];
+  $field = $this["name"];
+  $inputs = $this.closest('form').getElementsByTagName('input');
+  $arrInputs = Array.prototype.slice.call($inputs);
+  $subnitBtn = $this.closest('form').getElementsByClassName('submit-form')[0];
+  $errorMsgHolder = $this.closest('form').getElementsByClassName($field + '-err-msg')[0];
+  $.ajax({
+    url: ajaxUrl,
+    method: 'POST',
+    data: (_data = {}, _defineProperty(_data, $field, $(this).val()), _defineProperty(_data, "field", $field), _data),
+    dataType: 'json',
+    success: function success(data) {
+      $this.classList.remove("error");
+      $errorMsgHolder.innerHTML = "";
+      $errorMsgHolder.classList.remove('show-error');
+      $someArray = [];
+      $arrInputs.forEach(function ($data) {
+        $someArray.push($data.classList.contains('error'));
+      });
+      $check = $someArray.includes(true);
+
+      if ($check != true) {
+        $subnitBtn.classList.remove("disabled");
+      }
+    },
+    error: function error(data) {
+      $errorMsg = data.responseJSON.errors[$field][0];
+
+      if (data.status != 200) {
+        $errorMsgHolder.innerHTML = $errorMsg;
+        $errorMsgHolder.classList.add('show-error');
+        $this.classList.add("error");
+        $subnitBtn.classList.add("disabled");
+      } else {
+        $this.classList.remove("error");
+        $errorMsgHolder.innerHTML = "";
+        $errorMsgHolder.classList.remove('show-error');
+        $someArray = [];
+        $arrInputs.forEach(function ($data) {
+          $someArray.push($data.classList.contains('error'));
+        });
+        $check = $someArray.includes(true);
+
+        if ($check != true) {
+          $subnitBtn.classList.remove("disabled");
+        }
+      }
+    }
+  });
+});
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 /***/ }),
 
