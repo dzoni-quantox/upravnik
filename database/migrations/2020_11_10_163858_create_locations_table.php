@@ -16,11 +16,10 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('city');
-            $table->string('street');
-            $table->string('street_number');
-            $table->string('number_of_apartments');
+            $table->string('address')->unique();
             $table->string('tax_number')->unique();
             $table->string('id_number')->unique();
+            $table->tinyInteger('number_of_apartments');
             $table->timestamps();
         });
     }

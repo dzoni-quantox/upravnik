@@ -8,93 +8,29 @@
 
     <div class="row">
 
-      <div class="col-lg-12">
-        <div class="member d-flex align-items-start p-3">
-          <!-- <div class="pic"><img src="assets/img/image.jpg" class="img-fluid" alt=""></div> -->
-          <div class="member-info" style="width: 100%;">
-            <div class="row">
-              <div class="col-lg-3">
-                <p class="m-0">Beograd</p>
-              </div>
-              <div class="col-lg-5">
-                <p class="m-0">Generala Mihajla Nedeljkovića</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">PIB: 125324853</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">MB: 21312131</p>
-              </div>
+      @foreach($locations as $location)
+        <div class="col-lg-12">
+            <div class="member d-flex align-items-start p-3">
+                <!-- <div class="pic"><img src="assets/img/image.jpg" class="img-fluid" alt=""></div> -->
+                <div class="member-info" style="width: 100%;">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p class="m-0">{!! $location->city !!}</p>
+                        </div>
+                        <div class="col-lg-5">
+                            <p class="m-0">{!! $location->address !!}</p>
+                        </div>
+                        <div class="col-lg-2">
+                            <p class="m-0">PIB: {!! $location->tax_number !!}</p>
+                        </div>
+                        <div class="col-lg-2">
+                            <p class="m-0">MB: {!! $location->id_number !!}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
-      <div class="col-lg-12 mt-2">
-        <div class="member d-flex align-items-start p-3">
-          <!-- <div class="pic"><img src="assets/img/image.jpg" class="img-fluid" alt=""></div> -->
-          <div class="member-info" style="width: 100%;">
-            <div class="row">
-              <div class="col-lg-3">
-                <p class="m-0">Beograd</p>
-              </div>
-              <div class="col-lg-5">
-                <p class="m-0">Generala Mihajla Nedeljkovića</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">PIB: 125324853</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">MB: 21312131</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-12 mt-2">
-        <div class="member d-flex align-items-start p-3">
-          <!-- <div class="pic"><img src="assets/img/image.jpg" class="img-fluid" alt=""></div> -->
-          <div class="member-info" style="width: 100%;">
-            <div class="row">
-              <div class="col-lg-3">
-                <p class="m-0">Beograd</p>
-              </div>
-              <div class="col-lg-5">
-                <p class="m-0">Generala Mihajla Nedeljkovića</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">PIB: 125324853</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">MB: 21312131</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-12 mt-2">
-        <div class="member d-flex align-items-start p-3">
-          <!-- <div class="pic"><img src="assets/img/image.jpg" class="img-fluid" alt=""></div> -->
-          <div class="member-info" style="width: 100%;">
-            <div class="row">
-              <div class="col-lg-3">
-                <p class="m-0">Beograd</p>
-              </div>
-              <div class="col-lg-5">
-                <p class="m-0">Generala Mihajla Nedeljkovića</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">PIB: 125324853</p>
-              </div>
-              <div class="col-lg-2">
-                <p class="m-0">MB: 21312131</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      @endforeach
 
     </div>
 

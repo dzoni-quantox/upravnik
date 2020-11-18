@@ -7,11 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 class Apartment extends Model
 {
     /**
-     * Get the users for apartment.
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
-    public function users()
+    public $fillable = [
+        'apartment_number',
+        'owner_name',
+        'owner_phone',
+        'owner_email',
+        'location_id',
+    ];
+
+    /**
+     * Get the meta data for apartment.
+     */
+    public function apartmentMeta()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\ApartmentMeta');
+    }
+
+    /**
+     * Get the user for apartment.
+     */
+    public function user()
+    {
+        return $this->hasOne('App\User');
     }
 
     /**

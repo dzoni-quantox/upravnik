@@ -20,7 +20,7 @@ class Location extends Model
     ];
 
     /**
-     * Get the location meta data for the location.
+     * Get meta data for the location.
      */
     public function locationMeta()
     {
