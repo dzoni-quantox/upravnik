@@ -18,12 +18,11 @@ class NotificationsController extends Controller
 
     /**
      * Display a listing of notifications for a specific location.
-     * @param $locationId
-     * @return
+     * @param Location $location
+     * @return mixed
      */
-    public function getForLocation($locationId)
+    public function getForLocation(Location $location)
     {
-        $location = Location::find($locationId);
         return $location->notifications;
     }
 
