@@ -1584,6 +1584,33 @@ section {
   margin-left: 8px;
 }
 
+.buildings .admin-building-list-dropdown button {
+  border: none;
+  background: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.buildings .admin-building-list-dropdown .dropdown-item:hover button,
+.buildings .admin-building-list-dropdown .dropdown-item:focus button,
+.buildings .admin-building-list-dropdown button:hover,
+.buildings .admin-building-list-dropdown button:focus,
+.buildings .admin-building-list-dropdown button:active {
+  border: none;
+  background: #f8f9fa;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.buildings .admin-building-list-dropdown .dropdown-item:active button {
+  border: none;
+  background: #007bff;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+}
+
 /*--------------------------------------------------------------
 # Users
 --------------------------------------------------------------*/
@@ -2749,5 +2776,29 @@ input[type=number]:hover {
   .admin-buildings-section .faq-list {
     padding: 0;
   }
+}
+
+.edit-form-holder input {
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.edit-form-holder label {
+  width: 100%;
+  margin: 0;
+}
+
+.edit-form-holder .input-group-btn button {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 0;
 }
 
