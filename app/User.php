@@ -43,18 +43,10 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the user meta data for the user.
+     * Get the role for the user
      */
-    public function userMeta()
-    {
-        return $this->hasMany('App\UserMeta');
-    }
-
-    /**
-     * Get roles for the user
-     */
-    public function roles() {
-        return $this->belongsToMany('\App\Role');
+    public function role() {
+        return $this->belongsTo('\App\Role');
     }
 
     /**
