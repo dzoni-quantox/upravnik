@@ -9,11 +9,11 @@
         <li><a href="#about">O nama</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contacts">Kontakt</a></li>
-
+        <li><a href="/admin">Admin</a></li>
       </ul>
     </nav>
 
-    <a href="portal.html" class="appointment-btn scrollto">Korisnički portal</a>
+    <a href="{{ route('portal.home') }}" class="appointment-btn scrollto">Korisnički portal</a>
 
   </div>
 </header>
