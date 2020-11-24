@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Apartment;
 use App\Location;
-use App\LocationMeta;
 use Illuminate\Http\Request;
 
 class LocationsController extends Controller
@@ -82,7 +80,7 @@ class LocationsController extends Controller
     {
         $apartments = $location->apartments();
 
-        return view('locations.edit', compact(['location', 'apartments']));
+        return view('locations.edit', compact(['location', 'apartments'
     }
 
     /**
