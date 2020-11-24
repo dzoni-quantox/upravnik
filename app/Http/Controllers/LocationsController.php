@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Apartment;
 use App\Location;
+use App\LocationMeta;
 use Illuminate\Http\Request;
 
 class LocationsController extends Controller
@@ -68,7 +70,7 @@ class LocationsController extends Controller
      */
     public function show(Location $location)
     {
-        return view('locations.show')->with('location', $location);
+        return view('locations.show', $location);
     }
 
     /**
