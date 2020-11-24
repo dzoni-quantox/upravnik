@@ -81,7 +81,11 @@ class ApartmentsController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        $location = $apartment->location;
+
         $apartment->delete();
+        $location->update(['number_of_apartments' => $location->number_of_apartments - 1]);
+
         return back();
     }
 }
