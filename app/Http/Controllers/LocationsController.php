@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Apartment;
 use App\Location;
 use App\LocationMeta;
+use App\Notification;
 use Illuminate\Http\Request;
 
 class LocationsController extends Controller
@@ -70,9 +71,11 @@ class LocationsController extends Controller
      */
     public function show(Location $location)
     {
-        $locationMeta = $location->locationMeta();
+              
+        $locationMeta = LocationMeta::where('location_id', $location->id)->get();
+        $notifications = Notification::where('location_id', $location->id)->get();
 
-        return view('locations.show', compact(['location', 'locationMeta']));
+        return view('locations.show', compact(['location', 'locationMeta', 'notifications']));
     }
 
     /**

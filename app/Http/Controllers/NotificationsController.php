@@ -45,7 +45,7 @@ class NotificationsController extends Controller
         $data = $request->validate([
             'location_id' => 'required|numeric',
             'subject' => 'required|string',
-            'text' => 'required|text'
+            'text' => 'required|string'
         ]);
 
         Notification::create($data);

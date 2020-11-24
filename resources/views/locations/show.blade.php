@@ -27,46 +27,35 @@
                         <td>Matični broj:</td>
                         <td>{{$location->id_number}}</td>
                       </tr>
-                      <tr>
-                        <td>Polja po želji</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>Polje 1</td>
-                        <td>Polje 2</td>
-                        <td>Polje 3</td>
-                        <td>Polje 4</td>
-                      </tr>
-                      <tr>
-                        <td>Polje 1</td>
-                        <td>Polje 2</td>
-                        <td>Polje 3</td>
-                        <td>Polje 4</td>
-                      </tr>
-                      <tr>
-                        <td>Polje 1</td>
-                        <td>Polje 2</td>
-                        <td>Polje 3</td>
-                        <td>Polje 4</td>
-                      </tr>
-                      <tr>
-                        <td>Polje 1</td>
-                        <td>Polje 2</td>
-                        <td>Polje 3</td>
-                        <td>Polje 4</td>
-                      </tr>
-                      <tr>
-                        <td>Polje 1</td>
-                        <td>Polje 2</td>
-                        <td>Polje 3</td>
-                        <td>Polje 4</td>
-                      </tr>
-                     
-                     
                     </tbody>
                   </table>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <h5>Polja po želji</h5>
+                      </div>
+                      @foreach($locationMeta as $test)
+                        <div class="col-lg-3 custom-field-holder">{{$test->field_name}}</div>    
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="container">
+                <div><h4>Obavestenja</h4></div>
+                <div class="row">
+                  @foreach($notifications as $notification)  
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                      <div class="icon-box">
+                        <h4><a href="">{{$notification->subject}}</a></h4>
+                        <p>
+                          {{$notification->text}}
+                        </p>
+                      </div>
+                    </div>
+                  @endforeach
                 </div>
               </div>
             </div>
@@ -81,6 +70,10 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="building-notification" class="building-notification">
+    
   </section>
   
 @endsection
