@@ -95,10 +95,10 @@ class LocationsController extends Controller
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'address' => 'required|string|unique:locations',
+            'address' => 'required|string|unique:locations,address,' . $location->id,
             'number_of_apartments' => 'required|numeric',
-            'tax_number' => 'required|numeric|unique:locations',
-            'id_number' => 'required|numeric|unique:locations',
+            'tax_number' => 'required|numeric|unique:locations,address,' . $location->id,
+            'id_number' => 'required|numeric|unique:locations,address,' . $location->id,
             'meta' => 'sometimes|array'
         ]);
 
