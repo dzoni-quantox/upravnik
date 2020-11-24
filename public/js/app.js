@@ -49758,7 +49758,7 @@ var app = new Vue({
   $(function () {
     var addFormGroup = function addFormGroup(event) {
       event.preventDefault();
-      var $formGroup = $(this).closest('.form-group');
+      var $formGroup = $(this).closest('.js-form-group');
       var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
       var $formGroupClone = $formGroup.clone();
       $(this).toggleClass('btn-default btn-add btn-danger btn-remove').html('–');
@@ -49773,7 +49773,7 @@ var app = new Vue({
 
     var removeFormGroup = function removeFormGroup(event) {
       event.preventDefault();
-      var $formGroup = $(this).closest('.form-group');
+      var $formGroup = $(this).closest('.js-form-group');
       var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
       var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
 
@@ -49846,6 +49846,34 @@ $(document).on('keyup', '.uniqe-field', function () {
       }
     }
   });
+});
+var fieldRemoveUrl = $("#fieldRemove").val();
+$(document).on('click', '.js-remove-field-btn', function () {
+  $this = $(this)[0];
+  $field = this.closest('.js-field-holder').getElementsByClassName('js-field-input')[0];
+  $fieldHolder = $this.closest('.js-field-holder');
+  $fieldId = $($field).attr('data-id');
+  var result = confirm("Da li ste sigurni da želite da obrišete polje? (Ukoliko obrisete polje obrisace se i svi podaci stanara za to polje)");
+
+  if (result == true) {
+    $fieldHolder.remove();
+    $.ajax({
+      url: fieldRemoveUrl,
+      method: 'POST',
+      data: {
+        "id": $fieldId
+      },
+      dataType: 'json',
+      success: function success(data) {
+        console.log('SUCCESS!!!');
+      },
+      error: function error(data) {
+        console.log('ERROR!!!');
+      }
+    });
+  } else {
+    console.log("STOP!!!");
+  }
 });
 $.ajaxSetup({
   headers: {

@@ -19,7 +19,7 @@
           <label for="tax_number" class="error-message tax_number-err-msg"></label>
           <input class="uniqe-field" id="id_number" type="text" name="id_number" placeholder="Matični broj" required>
           <label for="id_number" class="error-message id_number-err-msg"></label>
-          <div class="form-group multiple-form-group">
+          <div class="form-group multiple-form-group js-form-group">
             <div class="form-group input-group">
               <input type="text" name="meta[]" class="form-control" placeholder="Polje po želji">
                 <span class="input-group-btn">

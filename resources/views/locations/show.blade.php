@@ -34,8 +34,8 @@
                       <div class="col-lg-12">
                         <h5>Polja po želji</h5>
                       </div>
-                      @foreach($locationMeta as $test)
-                        <div class="col-lg-3 custom-field-holder">{{$test->field_name}}</div>    
+                      @foreach($location->locationMeta as $field)
+                        <div class="col-lg-3 custom-field-holder">{{$field->field_name}}</div>    
                       @endforeach
                     </div>
                   </div>
@@ -46,7 +46,7 @@
               <div class="container">
                 <div><h4>Obavestenja</h4></div>
                 <div class="row">
-                  @foreach($notifications as $notification)  
+                  @foreach($location->notifications as $notification)  
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                       <div class="icon-box">
                         <h4><a href="">{{$notification->subject}}</a></h4>
