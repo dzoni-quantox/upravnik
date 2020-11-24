@@ -70,9 +70,7 @@ class LocationsController extends Controller
      */
     public function show(Location $location)
     {
-        $locationMeta = $location->locationMeta();
-
-        return view('locations.show', compact(['location', 'locationMeta']));
+        return view('locations.show')->with('location', $location);
     }
 
     /**
@@ -82,7 +80,9 @@ class LocationsController extends Controller
      */
     public function edit(Location $location)
     {
-        return view('locations.edit', $location);
+        $apartments = $location->apartments();
+
+        return view('locations.edit', compact(['location', 'apartments']));
     }
 
     /**
@@ -95,11 +95,12 @@ class LocationsController extends Controller
     public function update(Request $request, Location $location)
     {
         $data = $request->validate([
-            'city' => 'string',
-            'address' => 'string|unique:locations',
-            'number_of_apartments' => 'numeric',
-            'tax_number' => 'numeric|unique:locations',
-            'id_number' => 'numeric|unique:locations'
+            'city' => 'required|string',
+            'address' => 'required|string|unique:locations',
+            'number_of_apartments' => 'required|numeric',
+            'tax_number' => 'required|numeric|unique:locations',
+            'id_number' => 'required|numeric|unique:locations',
+            'meta' => 'sometimes|array'
         ]);
 
         $location->update($data);
