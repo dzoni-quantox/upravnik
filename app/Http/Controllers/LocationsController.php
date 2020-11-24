@@ -131,8 +131,9 @@ class LocationsController extends Controller
      *
      * @param $id
      */
-    public function deleteMeta($id) {
+    public function deleteMeta(Request $request) {
         //
+        dd($request->id);
     }
 
     /**
