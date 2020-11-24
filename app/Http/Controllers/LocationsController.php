@@ -78,9 +78,7 @@ class LocationsController extends Controller
      */
     public function edit(Location $location)
     {
-        $apartments = $location->apartments();
-
-        return view('locations.edit', compact(['location', 'apartments'
+        return view('locations.edit', $location);
     }
 
     /**
