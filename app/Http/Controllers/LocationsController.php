@@ -70,7 +70,7 @@ class LocationsController extends Controller
      */
     public function show(Location $location)
     {
-        return view('locations.show', $location);
+        return view('locations.show')->with('location', $location);
     }
 
     /**
@@ -80,7 +80,7 @@ class LocationsController extends Controller
      */
     public function edit(Location $location)
     {
-        return view('locations.edit', $location);
+        return view('locations.edit')->with('location', $location);
     }
 
     /**
@@ -108,8 +108,7 @@ class LocationsController extends Controller
         // ako je admin promenio number_of_apartments
 
         if(isset($request['meta'])) {
-            $location->locationMeta()->delete();
-            $this->createLocationMeta($request['meta'], $location);
+            $this->updateMeta($request['meta'], $location);
         }
 
         return route('location.show', $location);
@@ -125,6 +124,15 @@ class LocationsController extends Controller
         $location->delete();
 
         return back();
+    }
+
+    /**
+     * Delete meta for resource.
+     *
+     * @param $id
+     */
+    public function deleteMeta($id) {
+        //
     }
 
     /**
@@ -166,5 +174,14 @@ class LocationsController extends Controller
             ]);
             $i++;
         }
+    }
+
+    private function updateMeta($data, $location) {
+        foreach ($data as $id => $field) {
+
+        }
+
+        $location->locationMeta()->delete();
+        $this->createLocationMeta($data, $location);
     }
 }
