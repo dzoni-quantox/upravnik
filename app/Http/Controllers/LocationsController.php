@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\ApartmentMeta;
 use App\Location;
 use App\LocationMeta;
 use Illuminate\Http\Request;
@@ -94,18 +95,14 @@ class LocationsController extends Controller
     {
         $data = $request->validate([
             'city' => 'required|string',
-            'address' => 'required|string|unique:locations',
+            'address' => 'required|string|unique:locations,address,' . $location->id,
             'number_of_apartments' => 'required|numeric',
-            'tax_number' => 'required|numeric|unique:locations',
-            'id_number' => 'required|numeric|unique:locations',
+            'tax_number' => 'required|numeric|unique:locations,address,' . $location->id,
+            'id_number' => 'required|numeric|unique:locations,address,' . $location->id,
             'meta' => 'sometimes|array'
         ]);
 
         $location->update($data);
-
-        // da se doda brisanje ili dodavanje stanova
-        // preko modala ili nekako
-        // ako je admin promenio number_of_apartments
 
         if(isset($request['meta'])) {
             $this->updateMeta($request['meta'], $location);
@@ -129,11 +126,11 @@ class LocationsController extends Controller
     /**
      * Delete meta for resource.
      *
-     * @param $id
+     * @param Request $request
      */
     public function deleteMeta(Request $request) {
-        //
-        dd($request->id);
+        $meta = LocationMeta::find($request->id);
+        $meta->delete();
     }
 
     /**
@@ -178,11 +175,21 @@ class LocationsController extends Controller
     }
 
     private function updateMeta($data, $location) {
-        foreach ($data as $id => $field) {
-
+        if(!empty($data['old'])) {
+            foreach ($data['old'] as $id => $field) {
+                $meta = LocationMeta::find($id);
+                $meta->update([
+                    'field_name' => $field
+                ]);
+            }
         }
-
-        $location->locationMeta()->delete();
-        $this->createLocationMeta($data, $location);
+        if(!empty($data['new'])) {
+            foreach ($data['new'] as $field) {
+                LocationMeta::create([
+                    'location_id' => $location->id,
+                    'field_name' => $field
+                ]);
+            }
+        }
     }
 }
