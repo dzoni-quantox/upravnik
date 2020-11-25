@@ -30,6 +30,7 @@ Route::resource('/users', 'UsersController', ['except' => ['create', 'store']]);
 
 Route::resource('/locations', 'LocationsController');
 Route::post('locations/validate-form', 'LocationsController@validateInputForm')->name('locations.validate-form');
+Route::post('locations/delete-meta', 'LocationsController@deleteMeta')->name('locations.delete-meta');
 
 Route::resource('/notifications', 'NotificationsController');
 Route::get('/notifications/location/{location}', 'NotificationsController@getForLocation');

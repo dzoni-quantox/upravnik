@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\ApartmentMeta;
 use App\Location;
 use App\LocationMeta;
 use Illuminate\Http\Request;
@@ -70,9 +71,7 @@ class LocationsController extends Controller
      */
     public function show(Location $location)
     {
-        $locationMeta = $location->locationMeta();
-
-        return view('locations.show', compact(['location', 'locationMeta']));
+        return view('locations.show')->with('location', $location);
     }
 
     /**
@@ -82,7 +81,7 @@ class LocationsController extends Controller
      */
     public function edit(Location $location)
     {
-        return view('locations.edit', $location);
+        return view('locations.edit')->with('location', $location);
     }
 
     /**
@@ -95,22 +94,18 @@ class LocationsController extends Controller
     public function update(Request $request, Location $location)
     {
         $data = $request->validate([
-            'city' => 'string',
-            'address' => 'string|unique:locations',
-            'number_of_apartments' => 'numeric',
-            'tax_number' => 'numeric|unique:locations',
-            'id_number' => 'numeric|unique:locations'
+            'city' => 'required|string',
+            'address' => 'required|string|unique:locations,address,' . $location->id,
+            'number_of_apartments' => 'required|numeric',
+            'tax_number' => 'required|numeric|unique:locations,address,' . $location->id,
+            'id_number' => 'required|numeric|unique:locations,address,' . $location->id,
+            'meta' => 'sometimes|array'
         ]);
 
         $location->update($data);
 
-        // da se doda brisanje ili dodavanje stanova
-        // preko modala ili nekako
-        // ako je admin promenio number_of_apartments
-
         if(isset($request['meta'])) {
-            $location->locationMeta()->delete();
-            $this->createLocationMeta($request['meta'], $location);
+            $this->updateMeta($request['meta'], $location);
         }
 
         return route('location.show', $location);
@@ -126,6 +121,16 @@ class LocationsController extends Controller
         $location->delete();
 
         return back();
+    }
+
+    /**
+     * Delete meta for resource.
+     *
+     * @param Request $request
+     */
+    public function deleteMeta(Request $request) {
+        $meta = LocationMeta::find($request->id);
+        $meta->delete();
     }
 
     /**
@@ -166,6 +171,25 @@ class LocationsController extends Controller
                 'location_id' => $location->id
             ]);
             $i++;
+        }
+    }
+
+    private function updateMeta($data, $location) {
+        if(!empty($data['old'])) {
+            foreach ($data['old'] as $id => $field) {
+                $meta = LocationMeta::find($id);
+                $meta->update([
+                    'field_name' => $field
+                ]);
+            }
+        }
+        if(!empty($data['new'])) {
+            foreach ($data['new'] as $field) {
+                LocationMeta::create([
+                    'location_id' => $location->id,
+                    'field_name' => $field
+                ]);
+            }
         }
     }
 }
