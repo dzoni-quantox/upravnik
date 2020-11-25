@@ -34,3 +34,5 @@ Route::post('locations/delete-meta', 'LocationsController@deleteMeta')->name('lo
 
 Route::resource('/notifications', 'NotificationsController');
 Route::get('/notifications/location/{location}', 'NotificationsController@getForLocation');
+
+Route::resource('/apartments', 'ApartmentsController');
